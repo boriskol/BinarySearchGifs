@@ -57,13 +57,16 @@ class ViewModel: ObservableObject {
      
      return nil
    }
+   func splitArray<T: Comparable>(array: [T], key: Int) -> [T] {
+      return Array(array[key..<array.count])
+   }
 
    @MainActor public func linearS(k: GifCollectionViewCellViewModel) async {
       debugPrint(binarySearch(array: gifs, key: k))
       self.gifIndex = await linearSearch(gifs, k)!
       debugPrint(gifIndex)
       //debugPrint(gifs.firstIndex(of: k)!)
-      self.searchgif = Array(gifs[gifIndex..<gifs.count])
+      self.searchgif = splitArray(array: gifs, key: gifIndex)//Array(gifs[gifIndex..<gifs.count])!
    }
    
    
