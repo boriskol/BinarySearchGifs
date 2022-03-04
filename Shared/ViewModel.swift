@@ -57,7 +57,7 @@ class ViewModel: ObservableObject {
      
      return nil
    }
-   func splitArray<T: Comparable>(array: [T], key: Int) -> [T] {
+   func splitArray<T: Comparable>(array: [T], key: Int) async -> [T] {
       return Array(array[key..<array.count])
    }
 
@@ -66,7 +66,7 @@ class ViewModel: ObservableObject {
       self.gifIndex = await linearSearch(gifs, k)!
       debugPrint(gifIndex)
       //debugPrint(gifs.firstIndex(of: k)!)
-      self.searchgif = splitArray(array: gifs, key: gifIndex)//Array(gifs[gifIndex..<gifs.count])!
+      self.searchgif = await splitArray(array: gifs, key: gifIndex)//Array(gifs[gifIndex..<gifs.count])!
    }
    
    
